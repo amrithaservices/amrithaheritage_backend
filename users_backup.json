@@ -1,0 +1,56 @@
+﻿[
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$xIuKHXOhAKqk7G6i3sCuLn$NLxysHhv/Zp8AebJfhXgQr4Mn1RGK8U9mqbixHC9PRc=",
+    "last_login": "2025-10-05T12:08:10.385Z",
+    "is_superuser": true,
+    "username": "amritha",
+    "first_name": "",
+    "last_name": "",
+    "email": "info@amrithaheritage.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-10-05T10:29:55.419Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$6DzTeJ9Hgq5qJ5fuqiM36B$4BbQQrG7tXieQGGNHA2RY4wALEU234+0NeGFqLjHD7s=",
+    "last_login": null,
+    "is_superuser": true,
+    "username": "shibily",
+    "first_name": "",
+    "last_name": "",
+    "email": "shibilymohammed75@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-10-05T11:54:05.627Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$QOsUhoglMSr0AUORCgdp9k$9LeoxFv/rNghqvH+yOzbnp+FU2FtrUCzc86obqcov4g=",
+    "last_login": "2025-10-05T20:27:38.276Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "admin@kohinoor.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-10-05T12:00:17.676Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]
