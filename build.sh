@@ -2,14 +2,13 @@
 # exit on error
 set -o errexit
 
-# Install dependencies
+echo "🔧 Installing dependencies..."
 pip install -r requirements.txt
 
-# Collect static files
+echo "📦 Collecting static files..."
 python manage.py collectstatic --no-input
 
-# Wait for database to be ready (with retries)
-echo "Waiting for database to be ready..."
+echo "⏳ Waiting for database to be ready..."
 max_retries=30
 retry_count=0
 until python manage.py migrate --check 2>/dev/null || [ $retry_count -eq $max_retries ]; do
@@ -19,15 +18,14 @@ until python manage.py migrate --check 2>/dev/null || [ $retry_count -eq $max_re
 done
 
 if [ $retry_count -eq $max_retries ]; then
-  echo "Database connection failed after $max_retries attempts"
+  echo "❌ Database connection failed after $max_retries attempts"
   exit 1
 fi
 
-# Run database migrations
+echo "🗄️  Running database migrations..."
 python manage.py migrate
 
-# Restore data automatically (without shell access)
-python restore_data.py
-
-# Ensure superuser exists/updated for production admin login
+echo "👤 Creating/updating superuser..."
 python ensure_superuser.py
+
+echo "✅ Build completed successfully!"

@@ -1,0 +1,68 @@
+services:
+  # PostgreSQL Database
+  - type: pserv
+    name: amritha-heritage-db
+    plan: free
+    region: oregon
+    databaseName: amritha_heritage
+    databaseUser: amritha_user
+    ipAllowList: []
+
+  # Web Service
+  - type: web
+    name: amritha-heritage-backend
+    runtime: python
+    plan: free
+    region: oregon
+    branch: main
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn backend.wsgi --bind 0.0.0.0:$PORT"
+    healthCheckPath: /admin/login/
+    
+    envVars:
+      # Django Settings
+      - key: SECRET_KEY
+        generateValue: true
+      
+      - key: DEBUG
+        value: False
+      
+      - key: ALLOWED_HOSTS
+        value: .onrender.com,amrithaheritage.com,www.amrithaheritage.com
+      
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      
+      # Database - Automatically linked
+      - key: DATABASE_URL
+        fromDatabase:
+          name: amritha-heritage-db
+          property: connectionString
+      
+      # Cloudinary Settings (Add these in Render Dashboard)
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+      
+      # CORS Settings
+      - key: CORS_ALLOWED_ORIGINS
+        value: https://admin.amrithaheritage.com,https://www.amrithaheritage.com,https://amrithaheritage.com
+      
+      # CSRF Settings
+      - key: CSRF_TRUSTED_ORIGINS
+        value: https://admin.amrithaheritage.com,https://www.amrithaheritage.com,https://amrithaheritage.com
+      
+      # Superuser Configuration (Add these in Render Dashboard)
+      - key: DJANGO_SUPERUSER_USERNAME
+        sync: false
+      
+      - key: DJANGO_SUPERUSER_PASSWORD
+        sync: false
+      
+      - key: DJANGO_SUPERUSER_EMAIL
+        sync: false

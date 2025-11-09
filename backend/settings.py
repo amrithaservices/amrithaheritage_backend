@@ -9,10 +9,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 
-SECRET_KEY = config('SECRET_KEY', default='django-insecure-*w1g8rlopoeb&#@cfo186p!m&-cnq=w4)zs1n=g@gal89e(t&(')
+SECRET_KEY = config('SECRET_KEY')
 
-
-DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 DEFAULT_ALLOWED_HOSTS = [
     'localhost',
@@ -54,6 +53,15 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# Security Settings for Production
+SECURE_SSL_REDIRECT = not DEBUG
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SESSION_COOKIE_SECURE = not DEBUG
+CSRF_COOKIE_SECURE = not DEBUG
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+X_FRAME_OPTIONS = 'DENY'
+
 cloudinary.config(
     cloud_name=config('CLOUDINARY_CLOUD_NAME'),
     api_key=config('CLOUDINARY_API_KEY'),
@@ -68,9 +76,8 @@ cloudinary.config(
 
 
 
-# Notification Configuration
+# Notification Configuration (optional)
 SLACK_WEBHOOK_URL = config('SLACK_WEBHOOK_URL', default='')
-# Legacy email settings removed; using Slack webhook for notifications.
 
 
 
