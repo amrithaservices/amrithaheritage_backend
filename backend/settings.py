@@ -93,6 +93,7 @@ DEFAULT_CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:5174',
     'http://127.0.0.1:5175',
     'https://amritha-heritage-admin-dashboard-e1.vercel.app',
+    'https://admin.amrithaheritage.com',
     'https://www.amrithaheritage.com',
     'https://amrithaheritage.com',
 ]
@@ -132,6 +133,7 @@ DEFAULT_CSRF_TRUSTED_ORIGINS = [
     'https://amrithaheritage.com',
     'https://www.amrithaheritage.com',
     'https://amritha-heritage-admin-dashboard-e1.vercel.app',
+    'https://admin.amrithaheritage.com',
     'https://*.onrender.com',
 ]
 ENV_CSRF_TRUSTED_ORIGINS = [
